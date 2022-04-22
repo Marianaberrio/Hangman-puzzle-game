@@ -19,7 +19,17 @@ class Button:
     def __init__(self, win, center, width, height, hidden_letter):
         # Creates a rectangular button, eg:
         # qb = Button(myWin, centerPoint, width, height, 'Quit')
-
+	
+	# creates rgb colors to use on the buttons
+        purple = color_rgb(111, 89, 80)
+        orange = color_rgb(165, 100, 53)
+        pink = color_rgb(240, 220, 215)
+        brick = color_rgb(173, 121, 91)
+        brown = color_rgb(143, 94, 54)
+	
+	#color list
+        color_list = [purple, orange, pink, brick, brown]
+	
         w, h = width / 2.0, height / 2.0
         x, y = center.getX(), center.getY()
         self.xmax, self.xmin = x + w, x - w
@@ -27,7 +37,7 @@ class Button:
         p1 = Point(self.xmin, self.ymin)
         p2 = Point(self.xmax, self.ymax)
         self.rect = Rectangle(p1, p2)
-        self.rect.setFill('lightgray')
+        self.rect.setFill(random.choice(color_list)) #chooses a random color for every button
         self.rect.draw(win)
         self.hidden_letter = Text(center, hidden_letter)
         self.hidden_letter.draw(win)
@@ -189,7 +199,7 @@ def create_hidder(win, number_of_hidden_letters, path):
 
 
 win = GraphWin("Hangman", 700, 700)
-win.setBackground(color_rgb(212, 198, 66))
+win.setBackground(color_rgb(205, 172, 121))
 
 number_of_hidden_letters = len(wordSplitter(wordPicker(
     "C:\\Users\\leomu\\OneDrive\\Documents\\UNIVERSIDAD\\2021-2022\\S2\\P of programming\\hangman words.csv")))
